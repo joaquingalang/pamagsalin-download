@@ -1,3 +1,45 @@
+Pamagsalin Download - Docker Deployment Guide
+This guide provides instructions on how to run the Pamagsalin Download application using the provided Docker image file. This method ensures the application runs correctly without needing to install Node.js or any other dependencies.
+
+## Prerequisites
+Before you begin, you must have Docker Desktop installed and running on your computer.
+
+Download Docker Desktop
+
+## How to Run the Application
+Follow these steps to load the Docker image and start the application container.
+
+### Step 1: Load the Image
+First, make sure you have unzipped the shared file to get the pamagsalin-download.tar file. Open a terminal (Command Prompt, PowerShell, or Terminal on Mac/Linux), navigate to the directory containing this .tar file, and run the following command:
+
+Bash
+
+# This command loads the application image into Docker
+docker load -i pamagsalin-download.tar
+This will load the image onto your local machine, making it available to run.
+
+### Step 2: Run the Container
+Once the image is loaded, you can start the application with a single command.
+
+Bash
+
+# This command starts the container and maps port 8080
+docker run -p 3000:80 pamagsalin_download
+This command does two things:
+
+It creates a new container from the pamagsalin_download image.
+
+It maps port 3000 on your computer to the application's port 80 inside the container.
+
+### Step 3: Access the Application
+The application is now running! 
+
+Open your web browser and navigate to the following URL:
+
+http://localhost:3000
+
+You should see the Pamagsalin Download application running live.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
