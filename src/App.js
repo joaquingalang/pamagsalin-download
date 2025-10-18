@@ -1,24 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+
+import HomePage from "./pages/HomePage";
+import GradientBackground from "./components/GradientBackground";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GradientBackground />
+      <div className="relative z-10">
+        <HomePage />
+      </div>
+    </>
   );
 }
 
