@@ -1,7 +1,61 @@
+import { useState } from 'react';
+import { supabase } from '../supabaseClient.js'; 
+import emailjs from '@emailjs/browser';
+
 function ContactSection() {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [feedbackMessage, setFeedbackMessage] = useState('');
+    
+    const emailjs_service = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+    const emailjs_template = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+    const emailjs_public = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+
+    const handleSubmit = async (event) => {
+        event.preventDefault(); 
+        setIsSubmitting(true);
+        setFeedbackMessage('');
+
+        try {
+            const { error: supabaseError } = await supabase
+                .from('message')
+                .insert([{ name, email, message }]);
+
+            if (supabaseError) {
+                throw new Error(`Supabase error: ${supabaseError.message}`);
+            }
+            const templateParams = {
+                name: name,
+                email: email,
+                message: message,
+            };
+            await emailjs.send(
+                emailjs_service,
+                emailjs_template,
+                templateParams,
+                emailjs_public
+            );
+
+            setFeedbackMessage('Message sent successfully!');
+            setName('');
+            setEmail('');
+            setMessage('');
+
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            setFeedbackMessage('Failed to send message. Please try again.');
+        } finally {
+            setTimeout(() => {
+                setIsSubmitting(false);
+                setFeedbackMessage('');
+            }, 3000);
+        }
+    };
     return (
         <div className="w-full flex flex-col justify-center items-center px-6 md:px-10 lg:px-20 py-20">
-
             {/* Contact Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full max-w-6xl">
                 {/* Left - Message */}
@@ -21,28 +75,43 @@ function ContactSection() {
                 </div>
 
                 {/* Right - Contact Form */}
-                <form className="bg-brand-velvet/60 rounded-2xl p-8 flex flex-col gap-4 shadow-lg">
+                <form onSubmit={handleSubmit} className="bg-brand-velvet/60 rounded-2xl p-8 flex flex-col gap-4 shadow-lg">
                     <input
                         type="text"
                         placeholder="Your Name"
-                        className="w-full p-3 rounded-lg bg-brand-velvet/40 text-white placeholder-brand-gray-200 outline-none"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                        className="w-full p-3 rounded-lg bg-brand-velvet/40 text-white placeholder-brand-gray-200 outline-none focus:ring-2 focus:ring-brand-pink"
                     />
                     <input
                         type="email"
                         placeholder="Your Email"
-                        className="w-full p-3 rounded-lg bg-brand-velvet/40 text-white placeholder-brand-gray-200 outline-none"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        className="w-full p-3 rounded-lg bg-brand-velvet/40 text-white placeholder-brand-gray-200 outline-none focus:ring-2 focus:ring-brand-pink"
                     />
                     <textarea
                         placeholder="Your Message"
                         rows="5"
-                        className="w-full p-3 rounded-lg bg-brand-velvet/40 text-white placeholder-brand-gray-200 outline-none resize-none"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        required
+                        className="w-full p-3 rounded-lg bg-brand-velvet/40 text-white placeholder-brand-gray-200 outline-none resize-none focus:ring-2 focus:ring-brand-pink"
                     ></textarea>
                     <button
                         type="submit"
-                        className="bg-brand-pink text-brand-velvet font-poppins font-medium py-3 rounded-xl hover:opacity-90 transition"
+                        disabled={isSubmitting}
+                        className="bg-brand-pink text-brand-velvet font-poppins font-medium py-3 rounded-xl hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        Send Message
+                        {isSubmitting ? 'Sending...' : 'Send Message'}
                     </button>
+                    {feedbackMessage && (
+                        <p className={`text-center font-poppins mt-2 ${feedbackMessage.includes('Failed') ? 'text-red-400' : 'text-green-400'}`}>
+                            {feedbackMessage}
+                        </p>
+                    )}
                 </form>
             </div>
         </div>
@@ -50,3 +119,4 @@ function ContactSection() {
 }
 
 export default ContactSection;
+
