@@ -5,7 +5,7 @@ import Dev4Photo from "../assets/dev_photo_4.jpg"
 
 function DeveloperSection() {
     return (
-        <div className="w-full flex flex-col justify-center items-center px-6 md:px-10 lg:px-0 py-16">
+        <div className="w-full flex flex-col justify-center items-center px-6 md:px-10 py-16">
             {/* Section Title */}
             <p className="font-poppins font-light text-4xl text-transparent bg-clip-text bg-gradient-to-r from-brand-pink via-brand-gray-200 to-brand-gray-100 mb-8">
                 Developers
@@ -16,30 +16,30 @@ function DeveloperSection() {
                 
                 {/* Developer 1 */}
                 <div className="bg-brand-velvet/60 rounded-2xl p-6 flex flex-col items-center text-center transition-transform duration-300 transform hover:scale-105">
-                <img src={Dev1Photo} alt="Developer 1" className="w-32 h-32 object-cover rounded-full mb-4" />
-                <p className="font-poppins text-white text-2xl">Sean Simone Almendral</p>
-                <p className="font-poppins text-brand-gray-200 text-lg">AI/ML Engineer</p>
+                    <img src={Dev1Photo} alt="Developer 1" className="w-32 h-32 object-cover rounded-full mb-4" />
+                    <p className="font-poppins text-white text-2xl">Sean Simone Almendral</p>
+                    <p className="font-poppins text-brand-gray-200 text-lg">AI/ML Engineer</p>
                 </div>
 
                 {/* Developer 2 */}
                 <div className="bg-brand-velvet/60 rounded-2xl p-6 flex flex-col items-center text-center transition-transform duration-300 transform hover:scale-105">
-                <img src={Dev2Photo} alt="Developer 2" className="w-32 h-32 object-cover rounded-full mb-4" />
-                <p className="font-poppins text-white text-2xl">Joaquin Galang</p>
-                <p className="font-poppins text-brand-gray-200 text-lg">Fullstack Developer</p>
+                    <img src={Dev2Photo} alt="Developer 2" className="w-32 h-32 object-cover rounded-full mb-4" />
+                    <p className="font-poppins text-white text-2xl">Joaquin Galang</p>
+                    <p className="font-poppins text-brand-gray-200 text-lg">Fullstack Developer</p>
                 </div>
 
                 {/* Developer 3 */}
                 <div className="bg-brand-velvet/60 rounded-2xl p-6 flex flex-col items-center text-center transition-transform duration-300 transform hover:scale-105">
-                <img src={Dev3Photo} alt="Developer 3" className="w-32 h-32 object-cover rounded-full mb-4" />
-                <p className="font-poppins text-white text-2xl">Angelica Mae Tadique</p>
-                <p className="font-poppins text-brand-gray-200 text-lg">UI/UX Designer</p>
+                    <img src={Dev3Photo} alt="Developer 3" className="w-32 h-32 object-cover rounded-full mb-4" />
+                    <p className="font-poppins text-white text-2xl">Angelica Mae Tadique</p>
+                    <p className="font-poppins text-brand-gray-200 text-lg">UI/UX Designer</p>
                 </div>
 
                 {/* Developer 4 */}
                 <div className="bg-brand-velvet/60 rounded-2xl p-6 flex flex-col items-center text-center transition-transform duration-300 transform hover:scale-105">
-                <img src={Dev4Photo} alt="Developer 4" className="w-32 h-32 object-cover rounded-full mb-4" />
-                <p className="font-poppins text-white text-2xl">Eya Isabel Yalung</p>
-                <p className="font-poppins text-brand-gray-200 text-lg">UI/UX Designer</p>
+                    <img src={Dev4Photo} alt="Developer 4" className="w-32 h-32 object-cover rounded-full mb-4" />
+                    <p className="font-poppins text-white text-2xl">Eya Isabel Yalung</p>
+                    <p className="font-poppins text-brand-gray-200 text-lg">UI/UX Designer</p>
                 </div>
 
             </div>
