@@ -1,0 +1,18 @@
+# Dependencies
+node_modules
+
+# Production build folder (we will generate this inside the container)
+build
+
+# Git folder
+.git
+
+# Environment variables
+.env
+
+# Docker files
+Dockerfile
+Dockerfile.dev
+
+# Npm logs
+npm-debug.log
