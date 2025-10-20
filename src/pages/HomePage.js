@@ -10,7 +10,7 @@ function HomePage() {
     <>
       <NavBar />
 
-      <div className="w-full flex flex-col items-center scroll-smooth">
+      <div className="w-full flex flex-col items-center scroll-smooth mt-[4rem]">
         <section id="download">
           <DownloadSection />
         </section>
